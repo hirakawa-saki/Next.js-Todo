@@ -55,4 +55,4 @@ const Todo = ({ todo }: TodoProps) => {
   )
 }
 
-export default Todo
+export default Todo;
