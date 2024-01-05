@@ -27,15 +27,15 @@ const Todo = ({ todo }: TodoProps) => {
     setIsEditing(true);
   };
   const handleSave = async () => {
-    await editTodo(todo.id,editedTaskTitle);
+    await editTodo(todo.id,editedTaskTitle,todo.date);
     setIsEditing(false);
   };
 
   const handleDelete = async () => {
     await deleteTodo(todo.id);
   };
-
   return (
+    
     <li key={todo.id} className="flex justify-between p-4 bg-white border-l-4 border-blue-500 shadow">
       {isEditing ? (
         <input
@@ -46,7 +46,7 @@ const Todo = ({ todo }: TodoProps) => {
         onChange={(e: React.ChangeEvent<HTMLInputElement>) =>setEditedTitle(e.target.value)
         }
   />
-      ) : <span>{todo.text}</span>}
+      ) : <span>{todo.text}{todo.date.toString().substring(0, 10)}</span>}
       <div>
         {isEditing ? (<button className="text-blue-500 mr-3" onClick={handleSave}>save</button>) : (<button className="text-green-500 mr-3" onClick={handleEdit}>edit</button>)}
         <button className='text-red-500' onClick={handleDelete}>Delete</button>
